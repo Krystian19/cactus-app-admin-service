@@ -11,7 +11,7 @@ class Language(models.Model):
         db_table = 'Languages'
 
     def __str__(self):
-        return self.name + " " + iso_code
+        return self.name + " " + self.iso_code
 
 
 class Anime(models.Model):
@@ -85,9 +85,9 @@ class Season(models.Model):
     seasonOrder = models.IntegerField()
     title = models.CharField(max_length=250)
     startedAiring = models.DateTimeField()
-    stoppedAiring = models.DateTimeField()
+    stoppedAiring = models.DateTimeField(blank=True, null=True)
     poster = models.CharField(max_length=250)
-    background = models.CharField(max_length=250)
+    background = models.CharField(max_length=250, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -147,6 +147,7 @@ class EpisodeTitle(models.Model):
 
     def __str__(self):
         return str(self.episode_id) + " , Language: " + str(self.language_id)
+
 
 class EpisodeVersion(models.Model):
     """
