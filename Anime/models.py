@@ -113,3 +113,55 @@ class SeasonAlternativeTitle(models.Model):
 
     def __str__(self):
         return str(self.season_id) + " , Alternative title: " + str(self.title)
+
+
+class Episode(models.Model):
+    episodeOrder = models.IntegerField()
+    thumbnail = models.CharField(max_length=250)
+    season_id = models.ForeignKey(
+        Season, on_delete=models.CASCADE, db_column='season_id')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'Episodes'
+
+    def __str__(self):
+        return str(self.season_id) + " , Episode #: " + str(self.episodeOrder)
+
+
+class EpisodeTitle(models.Model):
+    """
+     Episodes have multiple titles depending of the language
+    """
+    text = models.CharField(max_length=250)
+    episode_id = models.ForeignKey(
+        Episode, on_delete=models.CASCADE, db_column='episode_id')
+    language_id = models.ForeignKey(
+        Language, on_delete=models.CASCADE, db_column='language_id')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'EpisodeTitles'
+
+    def __str__(self):
+        return str(self.episode_id) + " , Language: " + str(self.language_id)
+
+class EpisodeVersion(models.Model):
+    """
+     Episodes are available in multiple languages.
+    """
+    episode_url = models.TextField(max_length=250)
+    episode_id = models.ForeignKey(
+        Episode, on_delete=models.CASCADE, db_column='episode_id')
+    language_id = models.ForeignKey(
+        Language, on_delete=models.CASCADE, db_column='language_id')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'EpisodeVersions'
+
+    def __str__(self):
+        return str(self.episode_id) + " , Language: " + str(self.language_id)
