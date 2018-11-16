@@ -1,0 +1,47 @@
+[
+  {
+    "model": "Anime.anime",
+    "pk": 1,
+    "fields": {
+      "title": "Boku no Hero Academia",
+      "created_at": "2018-11-01T00:00:00Z",
+      "updated_at": "2018-11-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "Anime.anime",
+    "pk": 2,
+    "fields": {
+      "title": "Tokyo Ghoul",
+      "created_at": "2018-11-01T00:00:00Z",
+      "updated_at": "2018-11-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "Anime.anime",
+    "pk": 3,
+    "fields": {
+      "title": "Uchi no Maid ga",
+      "created_at": "2018-11-01T00:00:00Z",
+      "updated_at": "2018-11-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "Anime.anime",
+    "pk": 4,
+    "fields": {
+      "title": "Kishuku Gakkou no Juliet",
+      "created_at": "2018-11-01T00:00:00Z",
+      "updated_at": "2018-11-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "Anime.anime",
+    "pk": 5,
+    "fields": {
+      "title": "Steins;Gate",
+      "created_at": "2018-11-01T00:00:00Z",
+      "updated_at": "2018-11-01T00:00:00Z"
+    }
+  }
+]

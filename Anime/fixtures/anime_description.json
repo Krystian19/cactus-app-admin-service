@@ -1,0 +1,57 @@
+[
+  {
+    "model": "Anime.animedescription",
+    "pk": 1,
+    "fields": {
+      "anime_id": 1,
+      "language_id": 1,
+      "description": "One day, a four-year-old boy came to a sudden realization: the world is not fair.",
+      "created_at": "2018-11-01T00:00:00Z",
+      "updated_at": "2018-11-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "Anime.animedescription",
+    "pk": 2,
+    "fields": {
+      "anime_id": 2,
+      "language_id": 1,
+      "description": "Tokyo has become a cruel and merciless city\u2014a place where vicious creatures called \u201cghouls\u201d exist alongside humans.",
+      "created_at": "2018-11-01T00:00:00Z",
+      "updated_at": "2018-11-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "Anime.animedescription",
+    "pk": 3,
+    "fields": {
+      "anime_id": 3,
+      "language_id": 1,
+      "description": "Having lost her mother at a young age, Misha Takanashi, a second grader with Russian blood, now lives with her Japanese father.",
+      "created_at": "2018-11-01T00:00:00Z",
+      "updated_at": "2018-11-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "Anime.animedescription",
+    "pk": 4,
+    "fields": {
+      "anime_id": 4,
+      "language_id": 1,
+      "description": "The story takes place at Grigio Academy Boarding School where students come from two rivaling countries.",
+      "created_at": "2018-11-01T00:00:00Z",
+      "updated_at": "2018-11-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "Anime.animedescription",
+    "pk": 5,
+    "fields": {
+      "anime_id": 5,
+      "language_id": 1,
+      "description": "The self-proclaimed mad scientist Rintarou Okabe rents out a room in a rickety old building in Akihabara.",
+      "created_at": "2018-11-01T00:00:00Z",
+      "updated_at": "2018-11-01T00:00:00Z"
+    }
+  }
+]
