@@ -38,6 +38,7 @@ class Genre(models.Model):
     def __str__(self):
         return self.title
 
+
 class AnimeGenre(models.Model):
     """
     This is how Anime and Genres are related ...
@@ -55,6 +56,7 @@ class AnimeGenre(models.Model):
     def __str__(self):
         return " anime_id: " + str(self.anime_id) + " ,genre_id: " + str(self.genre_id)
 
+
 class AnimeDescription(models.Model):
     """
     Animes have multiple descriptions depending of the language is available
@@ -71,7 +73,8 @@ class AnimeDescription(models.Model):
         db_table = 'AnimeDescriptions'
 
     def __str__(self):
-        return self.name + " " + iso_code
+        return str(self.anime_id) + " ,Language: " + str(self.language_id)
+
 
 class Season(models.Model):
     """
@@ -92,4 +95,21 @@ class Season(models.Model):
         db_table = 'Seasons'
 
     def __str__(self):
-        return self.name + " " + iso_code
+        return str(self.anime_id) + " ,Season: " + str(self.seasonOrder)
+
+
+class SeasonAlternativeTitle(models.Model):
+    """
+    Seasons usually have more than one title
+    """
+    season_id = models.ForeignKey(
+        Season, on_delete=models.CASCADE, db_column='season_id')
+    title = models.CharField(max_length=250)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'SeasonAlternativeTitles'
+
+    def __str__(self):
+        return str(self.season_id) + " , Alternative title: " + str(self.title)
