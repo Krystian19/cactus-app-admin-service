@@ -17,7 +17,7 @@ admin.site.register(Language)
 admin.site.register(Genre)
 admin.site.register(AnimeGenre)
 admin.site.register(AnimeDescription)
-admin.site.register(Season)
+# admin.site.register(Season)
 admin.site.register(SeasonAlternativeTitle)
 admin.site.register(Episode)
 admin.site.register(EpisodeTitle)
@@ -38,23 +38,39 @@ class RequiredInlineFormSet(BaseInlineFormSet):
 
 """
 #
-# Anime creation admin view related
+# Anime creation admin related view
 #
 """
 class AnimeGenreInline(admin.StackedInline):
     model = AnimeGenre
     extra = 1
-    max_num = 1
+    max_num = 5
     formset = RequiredInlineFormSet
 
 
 class SeasonInline(admin.StackedInline):
     model = Season
     extra = 1
-    max_num = 1
+    max_num = 2
     formset = RequiredInlineFormSet
 
 
 @admin.register(Anime)
 class AnimeAdmin(admin.ModelAdmin):
     inlines = [AnimeGenreInline, SeasonInline]
+
+"""
+#
+# Season creation admin related view
+#
+"""
+class SeasonAlternativeTitleInline(admin.StackedInline):
+    model = SeasonAlternativeTitle
+    extra = 1
+    max_num = 1
+    # Seasons may not have alternative titles (not required)
+    # formset = RequiredInlineFormSet
+
+@admin.register(Season)
+class SeasonAdmin(admin.ModelAdmin):
+    inlines = [SeasonAlternativeTitleInline]
