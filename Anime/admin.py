@@ -19,7 +19,7 @@ admin.site.register(AnimeGenre)
 admin.site.register(AnimeDescription)
 # admin.site.register(Season)
 admin.site.register(SeasonAlternativeTitle)
-admin.site.register(Episode)
+# admin.site.register(Episode)
 admin.site.register(EpisodeTitle)
 admin.site.register(EpisodeVersion)
 
@@ -74,3 +74,26 @@ class SeasonAlternativeTitleInline(admin.StackedInline):
 @admin.register(Season)
 class SeasonAdmin(admin.ModelAdmin):
     inlines = [SeasonAlternativeTitleInline]
+
+"""
+#
+# Episode creation admin related view
+#
+"""
+class EpisodeTitleInline(admin.StackedInline):
+    model = EpisodeTitle
+    extra = 1
+    max_num = 3
+    # Episodes should have at least 1 title available
+    formset = RequiredInlineFormSet
+
+class EpisodeVersionInline(admin.StackedInline):
+    model = EpisodeVersion
+    extra = 1
+    max_num = 3
+    # Episodes should have at least 1 version available
+    formset = RequiredInlineFormSet
+
+@admin.register(Episode)
+class EpisodeAdmin(admin.ModelAdmin):
+    inlines = [EpisodeTitleInline, EpisodeVersionInline]
