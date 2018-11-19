@@ -45,19 +45,26 @@ class AnimeGenreInline(admin.StackedInline):
     model = AnimeGenre
     extra = 1
     max_num = 5
+    # Animes should have at least 1 Genre avaiable
     formset = RequiredInlineFormSet
-
 
 class SeasonInline(admin.StackedInline):
     model = Season
     extra = 1
     max_num = 2
+    # Animes should have at least 1 Season avaiable
     formset = RequiredInlineFormSet
 
+class AnimeDescriptionInline(admin.StackedInline):
+    model = AnimeDescription
+    extra = 1
+    max_num = 2
+    # Animes should have at least 1 description avaiable, regardless of the language
+    formset = RequiredInlineFormSet
 
 @admin.register(Anime)
 class AnimeAdmin(admin.ModelAdmin):
-    inlines = [AnimeGenreInline, SeasonInline]
+    inlines = [AnimeGenreInline, AnimeDescriptionInline, SeasonInline]
 
 """
 #
