@@ -74,7 +74,7 @@ class AnimeAdmin(admin.ModelAdmin):
 class SeasonAlternativeTitleInline(admin.StackedInline):
     model = SeasonAlternativeTitle
     extra = 1
-    max_num = 1
+    max_num = 4
     # Seasons may not have alternative titles (not required)
     # formset = RequiredInlineFormSet
 
