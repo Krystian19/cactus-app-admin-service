@@ -71,6 +71,13 @@ class AnimeAdmin(admin.ModelAdmin):
 # Season creation admin related view
 #
 """
+class EpisodeInline(admin.StackedInline):
+    model = Episode
+    extra = 1
+    max_num = 5
+    # Seasons should have at least 1 Episode available
+    formset = RequiredInlineFormSet
+
 class SeasonAlternativeTitleInline(admin.StackedInline):
     model = SeasonAlternativeTitle
     extra = 1
@@ -80,7 +87,7 @@ class SeasonAlternativeTitleInline(admin.StackedInline):
 
 @admin.register(Season)
 class SeasonAdmin(admin.ModelAdmin):
-    inlines = [SeasonAlternativeTitleInline]
+    inlines = [SeasonAlternativeTitleInline, EpisodeInline]
 
 """
 #
