@@ -43,21 +43,21 @@ class RequiredInlineFormSet(BaseInlineFormSet):
 """
 class AnimeGenreInline(admin.StackedInline):
     model = AnimeGenre
-    extra = 1
+    extra = 0
     max_num = 5
     # Animes should have at least 1 Genre avaiable
     formset = RequiredInlineFormSet
 
 class SeasonInline(admin.StackedInline):
     model = Season
-    extra = 1
+    extra = 0
     max_num = 2
     # Animes should have at least 1 Season avaiable
     formset = RequiredInlineFormSet
 
 class AnimeDescriptionInline(admin.StackedInline):
     model = AnimeDescription
-    extra = 1
+    extra = 0
     max_num = 2
     # Animes should have at least 1 description avaiable, regardless of the language
     formset = RequiredInlineFormSet
@@ -73,14 +73,14 @@ class AnimeAdmin(admin.ModelAdmin):
 """
 class EpisodeInline(admin.StackedInline):
     model = Episode
-    extra = 1
+    extra = 0
     max_num = 5
     # Seasons should have at least 1 Episode available
     formset = RequiredInlineFormSet
 
 class SeasonAlternativeTitleInline(admin.StackedInline):
     model = SeasonAlternativeTitle
-    extra = 1
+    extra = 0
     max_num = 4
     # Seasons may not have alternative titles (not required)
     # formset = RequiredInlineFormSet
@@ -96,14 +96,14 @@ class SeasonAdmin(admin.ModelAdmin):
 """
 class EpisodeTitleInline(admin.StackedInline):
     model = EpisodeTitle
-    extra = 1
+    extra = 0
     max_num = 3
     # Episodes should have at least 1 title available
     formset = RequiredInlineFormSet
 
 class EpisodeVersionInline(admin.StackedInline):
     model = EpisodeVersion
-    extra = 1
+    extra = 0
     max_num = 3
     # Episodes should have at least 1 version available
     formset = RequiredInlineFormSet
