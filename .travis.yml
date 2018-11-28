@@ -25,5 +25,8 @@ install:
   - docker ps -a
 
 script:
+  # Wait for a minute to give time for the backend-admin container to start properly and run it's migrations
+  - sleep 1m
+
   # Seed the DB
   - docker exec -ti backend-admin python /code/manage.py loaddata /code/Anime/fixtures/anime.json
