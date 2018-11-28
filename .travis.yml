@@ -1,0 +1,29 @@
+sudo: required
+
+language: node_js
+node_js:
+  - "8"
+
+services:
+  - docker
+
+before_install:
+  # Setup the networks
+  - docker network create testing_network
+
+  # Setup DB image
+  - docker run --name mysql -d -e MYSQL_ROOT_PASSWORD=secret -e MYSQL_DATABASE=cactus_app --network=testing_network mysql:5.7.24
+
+  # Build the required docker images
+  - docker build -t cactus_app/cactus-app-backend-admin .
+install:
+  # Wait for a minute to give time for the db container to start properly
+  - sleep 1m
+
+  # Run the backend-admin container
+  - docker run --name backend-admin -d -p 6500:8000 --network=testing_network cactus_app/cactus-app-backend-admin
+  - docker ps -a
+
+script:
+  # Seed the DB
+  - docker exec -ti backend-admin python /code/manage.py loaddata /code/Anime/fixtures/anime.json
