@@ -1,12 +1,14 @@
 from django.test import TestCase
 from .models import Anime
+from .models import Language
 
 # Anime model related tests
 class AnimeTestCase(TestCase):
-  GENEREIC_ANIME_TITLE = 'Generic Anime Name'
+  GENERIC_ANIME_TITLE = 'Generic Anime Name'
+
   def setUp(self):
     Anime.objects.create(
-      title=self.GENEREIC_ANIME_TITLE,
+      title=self.GENERIC_ANIME_TITLE,
     )
 
   def test_anime_model_integrity(self):
@@ -21,7 +23,7 @@ class AnimeTestCase(TestCase):
       self.fail('Anime registry was not created properly')
 
     # Does the last Anime record have the expected title
-    if test_anime.title != self.GENEREIC_ANIME_TITLE:
+    if test_anime.title != self.GENERIC_ANIME_TITLE:
       self.fail('Last Anime record doest not have the expected title value')
 
     # Does the Anime model have a created_at field ?
@@ -31,3 +33,40 @@ class AnimeTestCase(TestCase):
     # Does the Anime model have a updated_at field ?
     if test_anime.updated_at is None:
       self.fail('The Anime model does not have a updated_at field')
+
+# Language model related tests
+class LanguageTestCase(TestCase):
+  GENERIC_LANGUAGE_NAME = 'Generic Language Name'
+  GENERIC_LANGUAGE_ISO_CODE = 'es'
+
+  def setUp(self):
+    Language.objects.create(
+      name=self.GENERIC_LANGUAGE_NAME,
+      iso_code=self.GENERIC_LANGUAGE_ISO_CODE
+    )
+
+  def test_language_model_integrity(self):
+    """
+    Current Language model does not to the declared integrity.
+    """
+    test_language = Language.objects.last()
+
+    # Was the Language created successfully ?
+    if test_language is None:
+      self.fail('Language registry was not created properly')
+
+    # Does the last Language record have the expected name ?
+    if test_language.name != self.GENERIC_LANGUAGE_NAME:
+      self.fail('Last Language record doest not have the expected name value')
+
+    # Does the last Language record have the expected iso_code ?
+    if test_language.iso_code != self.GENERIC_LANGUAGE_ISO_CODE:
+      self.fail('Last Language record doest not have the expected iso_code value')
+
+    # Does the Language model have a created_at field ?
+    if test_language.created_at is None:
+      self.fail('The Language model does not have a created_at field')
+
+    # Does the Language model have a updated_at field ?
+    if test_language.updated_at is None:
+      self.fail('The Language model does not have a updated_at field')
