@@ -30,3 +30,6 @@ script:
 
   # Seed the DB
   - docker exec -ti backend-admin python /code/manage.py loaddata /code/Anime/fixtures/anime.json
+
+  # Run the tests
+  - docker exec -ti backend-admin python /code/manage.py test

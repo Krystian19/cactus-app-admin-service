@@ -1,6 +1,7 @@
 from django.test import TestCase
 from .models import Anime
 from .models import Language
+from .models import Genre
 
 # Anime model related tests
 class AnimeTestCase(TestCase):
@@ -70,3 +71,40 @@ class LanguageTestCase(TestCase):
     # Does the Language model have a updated_at field ?
     if test_language.updated_at is None:
       self.fail('The Language model does not have a updated_at field')
+
+# Genre model related tests
+class GenreTestCase(TestCase):
+  GENERIC_GENRE_TITLE = 'Generic Genre Title'
+  GENERIC_GENRE_THUMBNAIL = 'thumbnail.jpg'
+
+  def setUp(self):
+    Genre.objects.create(
+      title=self.GENERIC_GENRE_TITLE,
+      thumbnail=self.GENERIC_GENRE_THUMBNAIL,
+    )
+
+  def test_genre_model_integrity(self):
+    """
+    Current Genre model does not to the declared integrity.
+    """
+    test_genre = Genre.objects.last()
+
+    # Was the Genre created successfully ?
+    if test_genre is None:
+      self.fail('Genre registry was not created properly')
+
+    # Does the last Genre record have the expected name ?
+    if test_genre.title != self.GENERIC_GENRE_TITLE:
+      self.fail('Last Genre record doest not have the expected title value')
+
+    # Does the last Genre record have the expected iso_code ?
+    if test_genre.thumbnail != self.GENERIC_GENRE_THUMBNAIL:
+      self.fail('Last Genre record doest not have the expected thumbnail value')
+
+    # Does the Genre model have a created_at field ?
+    if test_genre.created_at is None:
+      self.fail('The Genre model does not have a created_at field')
+
+    # Does the Genre model have a updated_at field ?
+    if test_genre.updated_at is None:
+      self.fail('The Genre model does not have a updated_at field')
