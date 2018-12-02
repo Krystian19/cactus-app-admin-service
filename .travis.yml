@@ -32,7 +32,7 @@ script:
   - docker exec -ti backend-admin python /code/manage.py loaddata /code/Anime/fixtures/anime.json
 
   # Run the tests
-  - docker exec -ti backend-admin python /code/manage.py test
+  - docker exec -ti backend-admin coverage run --source='.' /code/manage.py test Anime
 
 after_success:
   - docker exec -ti backend-admin codecov
