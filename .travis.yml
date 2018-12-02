@@ -35,4 +35,4 @@ script:
   - docker exec -ti backend-admin python /code/manage.py test
 
 after_success:
-  - codecov
+  - docker exec -ti backend-admin codecov
