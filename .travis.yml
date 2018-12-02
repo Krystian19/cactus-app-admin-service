@@ -21,7 +21,7 @@ install:
   - sleep 1m
 
   # Run the backend-admin container
-  - docker run --name backend-admin -d -p 6500:8000 --network=testing_network cactus_app/cactus-app-backend-admin
+  - docker run --name backend-admin -d -e CODECOV_TOKEN=$CODECOV_TOKEN -p 6500:8000 --network=testing_network cactus_app/cactus-app-backend-admin
   - docker ps -a
 
 script:
@@ -33,3 +33,6 @@ script:
 
   # Run the tests
   - docker exec -ti backend-admin python /code/manage.py test
+
+after_success:
+  - codecov
