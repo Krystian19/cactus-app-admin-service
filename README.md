@@ -67,7 +67,7 @@ docker exec -ti backend_admin python /code/manage.py test
 ## Update seeder data
 Update the initial data file with this command, once you execute it, make the commit:
 ```sh
-docker exec -ti backend_admin /code/load_data.sh
+docker exec -ti backend_admin_1 /code/load_data.sh
 ```
 
 ## License
