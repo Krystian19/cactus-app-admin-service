@@ -8,7 +8,6 @@ from .models import Season
 from .models import SeasonAlternativeTitle
 from .models import Language
 from .models import Episode
-from .models import EpisodeTitle
 from .models import EpisodeVersion
 
 # Register your models here.
@@ -20,7 +19,6 @@ admin.site.register(AnimeDescription)
 # admin.site.register(Season)
 admin.site.register(SeasonAlternativeTitle)
 # admin.site.register(Episode)
-admin.site.register(EpisodeTitle)
 admin.site.register(EpisodeVersion)
 
 class RequiredInlineFormSet(BaseInlineFormSet):
@@ -94,13 +92,6 @@ class SeasonAdmin(admin.ModelAdmin):
 # Episode creation admin related view
 #
 """
-class EpisodeTitleInline(admin.StackedInline):
-    model = EpisodeTitle
-    extra = 0
-    max_num = 3
-    # Episodes should have at least 1 title available
-    formset = RequiredInlineFormSet
-
 class EpisodeVersionInline(admin.StackedInline):
     model = EpisodeVersion
     extra = 0
@@ -110,4 +101,4 @@ class EpisodeVersionInline(admin.StackedInline):
 
 @admin.register(Episode)
 class EpisodeAdmin(admin.ModelAdmin):
-    inlines = [EpisodeTitleInline, EpisodeVersionInline]
+    inlines = [EpisodeVersionInline]
