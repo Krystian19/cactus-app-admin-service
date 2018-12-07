@@ -9,8 +9,10 @@ from .models import SeasonAlternativeTitle
 from .models import Language
 from .models import Episode
 from .models import EpisodeVersion
+from .models import WeekDay
 
 # Register your models here.
+admin.site.register(WeekDay)
 admin.site.register(Language)
 # admin.site.register(Anime)
 admin.site.register(Genre)
