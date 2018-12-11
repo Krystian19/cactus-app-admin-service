@@ -2,18 +2,6 @@ from django.db import models
 from datetime import datetime
 
 
-class WeekDay(models.Model):
-    name = models.CharField(max_length=250)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        db_table = "WeekDays"
-
-    def __str__(self):
-        return "WeekDay: " + self.name
-
-
 class Language(models.Model):
     name = models.CharField(max_length=250)
     iso_code = models.CharField(max_length=250)
@@ -98,14 +86,6 @@ class Season(models.Model):
     seasonOrder = models.IntegerField()
     title = models.CharField(max_length=250)
     startedAiring = models.DateTimeField()
-    week_day_id = models.ForeignKey(
-        WeekDay,
-        on_delete=models.PROTECT,
-        db_column="week_day_id",
-        blank=True,
-        null=True,
-    )
-    airingTime = models.TimeField(blank=True, null=True)
     stoppedAiring = models.DateTimeField(blank=True, null=True)
     poster = models.CharField(max_length=250, default="test.jpg")
     background = models.CharField(max_length=250, default="test.jpg")
