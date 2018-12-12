@@ -36,6 +36,7 @@ services:
       - mysql
 
   backend_admin:
+    container_name: cactus_app_backend_admin
     build:
       ./cactus-app-backend-admin-service
     volumes:
@@ -61,13 +62,13 @@ services:
 ## Run the tests
 Once the service is up and assuming the service container is called "cactus_backend", then run ...
 ```sh
-docker exec -ti backend_admin python /code/manage.py test
+docker exec -ti cactus_app_backend_admin python /code/manage.py test
 ```
 
 ## Update seeder data
 Update the initial data file with this command, once you execute it, make the commit:
 ```sh
-docker exec -ti backend_admin_1 /code/load_data.sh
+docker exec -ti cactus_app_backend_admin /code/load_data.sh
 ```
 
 ## License
