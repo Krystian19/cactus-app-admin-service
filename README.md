@@ -1,6 +1,7 @@
 # Cactus Backend Admin
 [![Build Status](https://travis-ci.org/Krystian19/cactus-app-backend-admin-service.svg?branch=master)](https://travis-ci.org/Krystian19/cactus-app-backend-admin-service) [![Code Climate](https://codeclimate.com/github/Krystian19/cactus-app-backend-admin-service/badges/gpa.svg)](https://codeclimate.com/github/Krystian19/cactus-app-backend-admin-service) [![Test Coverage](https://codecov.io/gh/Krystian19/cactus-app-backend-admin-service/branch/master/graph/badge.svg)](https://codecov.io/gh/Krystian19/cactus-app-backend-admin-service)
 
+Content administration service for the Cactus app.
 
 ## Requirements
 ```sh
@@ -60,13 +61,13 @@ services:
 ```
 
 ## Run the tests
-Once the service is up and assuming the service container is called "cactus_backend", then run ...
+Once the service is up and assuming the service container is called "cactus_app_backend_admin", then run ...
 ```sh
 docker exec -ti cactus_app_backend_admin python /code/manage.py test
 ```
 
 ## Update seeder data
-Update the initial data file with this command, once you execute it, make the commit:
+Update the fixtures data file with this command, once you execute it, make the commit:
 ```sh
 docker exec -ti cactus_app_backend_admin /code/load_data.sh
 ```
