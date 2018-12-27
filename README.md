@@ -72,5 +72,10 @@ Update the fixtures data file with this command, once you execute it, make the c
 docker exec -ti cactus_app_backend_admin /code/load_data.sh
 ```
 
+### Translates Japan's Date and time to UTC with moment-timezone.js
+```js
+moment.tz('2018-10-07 00:30', 'Japan').utc().format('YYYY-MM-DD HH:mm:ss A');
+```
+
 ## License
 MIT © [Jan Guzman](https://github.com/Krystian19)
