@@ -46,7 +46,7 @@ services:
       ENV: "development"
       DJANGO_ADMIN_USER: admin
       DJANGO_ADMIN_PASSWORD: "pass1234"
-      DEBUG: "False"
+      DEBUG: "True"
     healthcheck:
       test: ["CMD",  "curl", "-I", "--fail", "http://localhost:8000/admin"]
       timeout: 20s
