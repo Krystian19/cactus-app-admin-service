@@ -67,8 +67,8 @@ class Season(models.Model):
     title = models.CharField(max_length=250)
     startedAiring = models.DateTimeField()
     stoppedAiring = models.DateTimeField(blank=True, null=True)
-    poster = models.CharField(max_length=250, default="test.jpg")
-    background = models.CharField(max_length=250, default="test.jpg")
+    poster = models.CharField(max_length=250, blank=True, null=True)
+    background = models.CharField(max_length=250, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
