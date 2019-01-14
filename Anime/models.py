@@ -29,7 +29,7 @@ class Anime(models.Model):
 
 class Genre(models.Model):
     title = models.CharField(max_length=250)
-    thumbnail = models.CharField(max_length=250, default="test.jpg")
+    thumbnail = models.CharField(max_length=250, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -122,7 +122,7 @@ class SeasonAlternativeTitle(models.Model):
 
 class Episode(models.Model):
     episodeOrder = models.IntegerField()
-    thumbnail = models.CharField(max_length=250, default="test.jpg")
+    thumbnail = models.CharField(max_length=250, blank=True, null=True)
     season_id = models.ForeignKey(
         Season, on_delete=models.CASCADE, db_column="season_id"
     )
