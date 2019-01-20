@@ -2,7 +2,7 @@ from django.forms.models import BaseInlineFormSet
 from django.contrib import admin
 from .models import Anime
 from .models import Genre
-from .models import AnimeGenre
+from .models import SeasonGenre
 from .models import SeasonDescription
 from .models import Season
 from .models import SeasonAlternativeTitle
@@ -14,7 +14,7 @@ from .models import EpisodeVersion
 admin.site.register(Language)
 # admin.site.register(Anime)
 admin.site.register(Genre)
-admin.site.register(AnimeGenre)
+admin.site.register(SeasonGenre)
 admin.site.register(SeasonDescription)
 # admin.site.register(Season)
 admin.site.register(SeasonAlternativeTitle)
@@ -43,14 +43,6 @@ class RequiredInlineFormSet(BaseInlineFormSet):
 """
 
 
-class AnimeGenreInline(admin.StackedInline):
-    model = AnimeGenre
-    extra = 0
-    max_num = 5
-    # Animes should have at least 1 Genre avaiable
-    formset = RequiredInlineFormSet
-
-
 class SeasonInline(admin.StackedInline):
     model = Season
     extra = 0
@@ -61,7 +53,7 @@ class SeasonInline(admin.StackedInline):
 
 @admin.register(Anime)
 class AnimeAdmin(admin.ModelAdmin):
-    inlines = [AnimeGenreInline, SeasonInline]
+    inlines = [SeasonInline]
 
 
 """
@@ -78,6 +70,13 @@ class EpisodeInline(admin.StackedInline):
     # Seasons should have at least 1 Episode available
     formset = RequiredInlineFormSet
 
+
+class SeasonGenreInline(admin.StackedInline):
+    model = SeasonGenre
+    extra = 0
+    max_num = 5
+    # Animes should have at least 1 Genre avaiable
+    formset = RequiredInlineFormSet
 
 class AnimeDescriptionInline(admin.StackedInline):
     model = SeasonDescription
@@ -97,7 +96,12 @@ class SeasonAlternativeTitleInline(admin.StackedInline):
 
 @admin.register(Season)
 class SeasonAdmin(admin.ModelAdmin):
-    inlines = [SeasonAlternativeTitleInline, AnimeDescriptionInline, EpisodeInline]
+    inlines = [
+        SeasonAlternativeTitleInline,
+        AnimeDescriptionInline,
+        SeasonGenreInline,
+        EpisodeInline,
+    ]
 
 
 """

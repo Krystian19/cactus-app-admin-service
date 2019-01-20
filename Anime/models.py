@@ -40,23 +40,6 @@ class Genre(models.Model):
         return self.title
 
 
-class AnimeGenre(models.Model):
-    """
-    This is how Anime and Genres are related ...
-    """
-
-    anime_id = models.ForeignKey(Anime, on_delete=models.CASCADE, db_column="anime_id")
-    genre_id = models.ForeignKey(Genre, on_delete=models.CASCADE, db_column="genre_id")
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        db_table = "AnimeGenres"
-
-    def __str__(self):
-        return " anime_id: " + str(self.anime_id) + " ,genre_id: " + str(self.genre_id)
-
-
 class Season(models.Model):
     """
     Anime series tend to have multiple seasons
@@ -79,6 +62,25 @@ class Season(models.Model):
         return str(self.anime_id) + " ,Season: " + str(self.seasonOrder)
 
 
+class SeasonGenre(models.Model):
+    """
+    This is how Anime and Genres are related ...
+    """
+
+    season_id = models.ForeignKey(
+        Season, on_delete=models.CASCADE, db_column="season_id"
+    )
+    genre_id = models.ForeignKey(Genre, on_delete=models.CASCADE, db_column="genre_id")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "SeasonGenres"
+
+    def __str__(self):
+        return " season_id: " + str(self.season_id) + " ,genre_id: " + str(self.genre_id)
+
+
 class SeasonDescription(models.Model):
     """
     Seasons have multiple descriptions based off the language they are in.
@@ -98,7 +100,9 @@ class SeasonDescription(models.Model):
         db_table = "SeasonDescriptions"
 
     def __str__(self):
-        return "Season id: " + str(self.season_id) + " ,Language: " + str(self.language_id)
+        return (
+            "Season id: " + str(self.season_id) + " ,Language: " + str(self.language_id)
+        )
 
 
 class SeasonAlternativeTitle(models.Model):
