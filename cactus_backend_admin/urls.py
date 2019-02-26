@@ -23,6 +23,9 @@ router.register(r'languages', views.LanguageViewSet)
 router.register(r'animes', views.AnimeViewSet)
 router.register(r'genres', views.GenreViewSet)
 router.register(r'seasons', views.SeasonViewSet)
+router.register(r'season_genres', views.SeasonGenreViewSet)
+router.register(r'season_descriptions', views.SeasonDescriptionViewSet)
+router.register(r'season_alternative_titles', views.SeasonAlternativeTitleViewSet)
 router.register(r'episodes', views.EpisodeViewSet)
 
 urlpatterns = [
