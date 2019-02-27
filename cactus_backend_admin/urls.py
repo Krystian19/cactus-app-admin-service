@@ -27,6 +27,7 @@ router.register(r'season_genres', views.SeasonGenreViewSet)
 router.register(r'season_descriptions', views.SeasonDescriptionViewSet)
 router.register(r'season_alternative_titles', views.SeasonAlternativeTitleViewSet)
 router.register(r'episodes', views.EpisodeViewSet)
+router.register(r'episode_versions', views.EpisodeVersionViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

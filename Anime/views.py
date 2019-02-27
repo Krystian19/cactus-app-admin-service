@@ -8,14 +8,16 @@ from Anime.serializers import SeasonGenreSerializer
 from Anime.serializers import SeasonDescriptionSerializer
 from Anime.serializers import SeasonAlternativeTitleSerializer
 from Anime.serializers import EpisodeSerializer
+from Anime.serializers import EpisodeVersionSerializer
 from .models import Language
 from .models import Anime
-from .models import Episode
 from .models import Genre
 from .models import Season
 from .models import SeasonGenre
 from .models import SeasonDescription
 from .models import SeasonAlternativeTitle
+from .models import Episode
+from .models import EpisodeVersion
 
 # Create your views here.
 class LanguageViewSet(viewsets.ModelViewSet):
@@ -49,4 +51,8 @@ class SeasonAlternativeTitleViewSet(viewsets.ModelViewSet):
 class EpisodeViewSet(viewsets.ModelViewSet):
     queryset = Episode.objects.all()
     serializer_class = EpisodeSerializer
+
+class EpisodeVersionViewSet(viewsets.ModelViewSet):
+    queryset = EpisodeVersion.objects.all()
+    serializer_class = EpisodeVersionSerializer
 
