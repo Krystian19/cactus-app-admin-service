@@ -22,39 +22,58 @@ from .models import Episode
 from .models import EpisodeVersion
 
 # Create your views here.
+
+
 class LanguageViewSet(viewsets.ModelViewSet):
     queryset = Language.objects.all()
     serializer_class = LanguageSerializer
+
 
 class AnimeViewSet(viewsets.ModelViewSet):
     queryset = Anime.objects.all()
     serializer_class = AnimeSerializer
 
+
 class GenreViewSet(viewsets.ModelViewSet):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
+
 
 class SeasonViewSet(viewsets.ModelViewSet):
     queryset = Season.objects.all()
     serializer_class = SeasonSerializer
 
+    def get_queryset(self):
+        queryset = Season.objects.all()
+
+        # 
+        title = self.request.query_params.get('title', None)
+        if title is not None:
+            queryset = queryset.filter(title=title)
+
+        return queryset
+
+
 class SeasonGenreViewSet(viewsets.ModelViewSet):
     queryset = SeasonGenre.objects.all()
     serializer_class = SeasonGenreSerializer
+
 
 class SeasonDescriptionViewSet(viewsets.ModelViewSet):
     queryset = SeasonDescription.objects.all()
     serializer_class = SeasonDescriptionSerializer
 
+
 class SeasonAlternativeTitleViewSet(viewsets.ModelViewSet):
     queryset = SeasonAlternativeTitle.objects.all()
     serializer_class = SeasonAlternativeTitleSerializer
+
 
 class EpisodeViewSet(viewsets.ModelViewSet):
     queryset = Episode.objects.all()
     serializer_class = EpisodeSerializer
 
+
 class EpisodeVersionViewSet(viewsets.ModelViewSet):
     queryset = EpisodeVersion.objects.all()
     serializer_class = EpisodeVersionSerializer
-
