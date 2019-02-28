@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "8ox!p@qzku55a4xe3pecr)mi6yqfmmn==12#lzq!i42l35p6rj"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG value comes from the DEBUG env variable
+# DEBUG value comes from the DEBUG env variable "True" or "False"
 DEBUG = env("DEBUG", False, var_type="boolean")
 # DEBUG = False
 
