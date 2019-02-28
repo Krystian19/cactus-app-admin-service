@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+from django.db.models import Q
+from functools import reduce
+import operator
 
 from Anime.serializers import LanguageSerializer
 from Anime.serializers import AnimeSerializer
@@ -20,6 +23,15 @@ from .models import SeasonDescription
 from .models import SeasonAlternativeTitle
 from .models import Episode
 from .models import EpisodeVersion
+
+
+def filter_title_string(search_params):
+    """
+    Filter based on a provided List of Strings, returns operator only useful 
+    for a "title" field.
+    """
+    # Filter list of elements based on the string sent as params
+    return reduce(operator.and_, [Q(title__icontains=s) for s in search_params])
 
 # Create your views here.
 
@@ -46,10 +58,13 @@ class SeasonViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = Season.objects.all()
 
-        # 
-        title = self.request.query_params.get('title', None)
-        if title is not None:
-            queryset = queryset.filter(title=title)
+        # When the title filter is present
+        title_param = self.request.query_params.get('title', None)
+        if title_param is not None:
+            parsed_title_params = title_param.split('+')
+
+            queryset = queryset.filter(
+                filter_title_string(parsed_title_params))
 
         return queryset
 
