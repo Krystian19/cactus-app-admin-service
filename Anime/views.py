@@ -61,7 +61,7 @@ class SeasonViewSet(viewsets.ModelViewSet):
         # When the title filter is present
         title_param = self.request.query_params.get('title', None)
         if title_param is not None:
-            parsed_title_params = title_param.split('+')
+            parsed_title_params = title_param.split(' ')
 
             queryset = queryset.filter(
                 filter_title_string(parsed_title_params))
