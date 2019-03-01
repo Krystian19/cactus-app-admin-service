@@ -33,9 +33,15 @@ def filter_title_string(search_params):
     # Filter list of elements based on the string sent as params
     return reduce(operator.and_, [Q(title__icontains=s) for s in search_params])
 
+
+def filter_by_gender(genre_id_list):
+    """
+    Filter based on a provided List of Integers corresponding to a ids of Genre Models.
+    """
+    # Filter list of elements based on the string sent as params
+    return reduce(operator.and_, [Q(seasongenre__genre_id=int(genre)) for genre in genre_id_list])
+
 # Create your views here.
-
-
 class LanguageViewSet(viewsets.ModelViewSet):
     queryset = Language.objects.all()
     serializer_class = LanguageSerializer
@@ -58,13 +64,23 @@ class SeasonViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = Season.objects.all()
 
-        # When the title filter is present
+        # When the title filter is present, is a string of strings separated by + signs
         title_param = self.request.query_params.get('title', None)
         if title_param is not None:
             parsed_title_params = title_param.split(' ')
 
             queryset = queryset.filter(
                 filter_title_string(parsed_title_params))
+
+        # When the Genre filter is present, is a string of integers separated by commas
+        genres_param = self.request.query_params.get('genres', None)
+        if genres_param is not None:
+            parsed_genres_params = genres_param.split(',')
+
+            # Apply filter for every genre in sequentially
+            for genre_param in parsed_genres_params:
+                queryset = queryset.filter(
+                    filter_by_gender([genre_param]))
 
         return queryset
 
