@@ -72,7 +72,7 @@ class SeasonViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(
                 filter_title_string(parsed_title_params))
 
-        # When the Genre filter is present, is a string of integers separated by commas
+        # When the genres filter is present, is a string of integers separated by commas
         genres_param = self.request.query_params.get('genres', None)
         if genres_param is not None:
             parsed_genres_params = genres_param.split(',')
