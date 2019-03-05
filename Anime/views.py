@@ -42,6 +42,8 @@ def filter_by_gender(genre_id_list):
     return reduce(operator.and_, [Q(seasongenre__genre_id=int(genre)) for genre in genre_id_list])
 
 # Create your views here.
+
+
 class LanguageViewSet(viewsets.ModelViewSet):
     queryset = Language.objects.all()
     serializer_class = LanguageSerializer
@@ -62,14 +64,12 @@ class SeasonViewSet(viewsets.ModelViewSet):
     serializer_class = SeasonSerializer
 
     def get_queryset(self):
-        queryset = Season.objects.all()
-
         # When the title filter is present, is a string of strings separated by + signs
         title_param = self.request.query_params.get('title', None)
         if title_param is not None:
             parsed_title_params = title_param.split(' ')
 
-            queryset = queryset.filter(
+            self.queryset = self.queryset.filter(
                 filter_title_string(parsed_title_params))
 
         # When the genres filter is present, is a string of integers separated by commas
@@ -79,10 +79,15 @@ class SeasonViewSet(viewsets.ModelViewSet):
 
             # Apply filter for every genre in sequentially
             for genre_param in parsed_genres_params:
-                queryset = queryset.filter(
+                self.queryset = self.queryset.filter(
                     filter_by_gender([genre_param]))
 
-        return queryset
+        # Filter based in the provided animeid param
+        anime_id_param = self.request.query_params.get('animeid', None)
+        if anime_id_param is not None:
+            self.queryset = self.queryset.filter(anime_id=int(anime_id_param))
+
+        return self.queryset
 
 
 class SeasonGenreViewSet(viewsets.ModelViewSet):
