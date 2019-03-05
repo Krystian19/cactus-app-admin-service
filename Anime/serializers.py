@@ -81,6 +81,7 @@ class EpisodeSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id',
                   'episodeOrder',
                   'thumbnail',
+                  'season_id',
                   'created_at',
                   'updated_at')
 
