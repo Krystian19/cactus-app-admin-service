@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "8ox!p@qzku55a4xe3pecr)mi6yqfmmn==12#lzq!i42l35p6rj"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG value comes from the DEBUG env variable
+# DEBUG value comes from the DEBUG env variable "True" or "False"
 DEBUG = env("DEBUG", False, var_type="boolean")
 # DEBUG = False
 
@@ -38,9 +38,18 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    # Custom installed apps
+    'rest_framework',
+    
     # Local apps
     "Anime",
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    'PAGE_SIZE': 10
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -82,7 +91,7 @@ DATABASES = {
         "NAME": "cactus_app",
         "USER": "root",
         "PASSWORD": "secret",
-        "HOST": "mysql",
+        "HOST": "cactus.mysql",
         "PORT": "3306",
     }
 }
