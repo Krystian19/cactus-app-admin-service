@@ -91,7 +91,7 @@ DATABASES = {
         "NAME": "cactus_app",
         "USER": "root",
         "PASSWORD": "secret",
-        "HOST": "mysql",
+        "HOST": "cactus.mysql",
         "PORT": "3306",
     }
 }
