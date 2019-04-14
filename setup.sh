@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Run migrations
 python3 manage.py migrate

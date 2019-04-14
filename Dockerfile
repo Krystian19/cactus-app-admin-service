@@ -1,14 +1,16 @@
-FROM python:3
+FROM python:3.7.3-alpine3.9
 
 # ENV vars
 ENV PYTHONUNBUFFERED 1
 ENV DJANGO_ADMIN_USER="admin"
 ENV DJANGO_ADMIN_PASSWORD="pass1234"
 
+RUN apk add --no-cache mariadb-dev build-base
+
 RUN mkdir /code
 WORKDIR /code
-ADD requirements.txt /code/
+
+COPY . /code/
 RUN pip install -r requirements.txt
-ADD . /code/
 
 CMD /code/setup.sh
