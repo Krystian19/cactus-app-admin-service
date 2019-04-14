@@ -5,6 +5,9 @@ ENV PYTHONUNBUFFERED 1
 ENV DJANGO_ADMIN_USER="admin"
 ENV DJANGO_ADMIN_PASSWORD="pass1234"
 
+RUN apk add --no-cache curl git
+
+# Install required dependencies for the python mysqlclient dependency
 RUN apk add --no-cache mariadb-dev build-base
 
 RUN mkdir /code
