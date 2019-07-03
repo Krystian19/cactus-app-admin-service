@@ -14,23 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from rest_framework import routers
-from Anime import views
-
-router = routers.DefaultRouter()
-router.register(r'languages', views.LanguageViewSet)
-router.register(r'animes', views.AnimeViewSet)
-router.register(r'genres', views.GenreViewSet)
-router.register(r'seasons', views.SeasonViewSet)
-router.register(r'season_genres', views.SeasonGenreViewSet)
-router.register(r'season_descriptions', views.SeasonDescriptionViewSet)
-router.register(r'season_alternative_titles', views.SeasonAlternativeTitleViewSet)
-router.register(r'episodes', views.EpisodeViewSet)
-router.register(r'episode_versions', views.EpisodeVersionViewSet)
+from django.urls import path, include, reverse_lazy
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
-    path('', include(router.urls)),
-    # path('api/', include('rest_framework.urls', namespace='rest_framework')),
+    path('', RedirectView.as_view(url=reverse_lazy('admin:index'))),
     path('admin/', admin.site.urls)
 ]
