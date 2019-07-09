@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from datetime import datetime
 
@@ -39,6 +40,29 @@ class Genre(models.Model):
     def __str__(self):
         return self.title
 
+class GenreLanguageVersion(models.Model):
+    """
+    Genres can have different titles throughout different languages
+    """
+
+    title = models.CharField(max_length=250)
+    genre_id = models.ForeignKey(
+        Genre, on_delete=models.CASCADE, db_column="genre_id"
+    )
+    language_id = models.ForeignKey(
+        Language, on_delete=models.CASCADE, db_column="language_id"
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "GenreLanguageVersion"
+
+    def __str__(self):
+        return "GenreLanguageVersion Episode " + self.genre_id + ", Language: " + self.language_id
+
+
+# TODO Work in the Movie model, and Movie Subtitle.
 
 class Season(models.Model):
     """
@@ -130,6 +154,7 @@ class Episode(models.Model):
     season_id = models.ForeignKey(
         Season, on_delete=models.CASCADE, db_column="season_id"
     )
+    episode_code = models.UUIDField(default=uuid.uuid4, editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -140,24 +165,23 @@ class Episode(models.Model):
         return str(self.season_id) + " , Episode #: " + str(self.episodeOrder)
 
 
-class EpisodeVersion(models.Model):
+class EpisodeSubtitle(models.Model):
     """
      Episodes are available in multiple languages.
     """
 
-    episode_url = models.TextField(max_length=250)
+    subtitle_code = models.UUIDField(default=uuid.uuid4, editable=False)
     episode_id = models.ForeignKey(
         Episode, on_delete=models.CASCADE, db_column="episode_id"
     )
     language_id = models.ForeignKey(
         Language, on_delete=models.CASCADE, db_column="language_id"
     )
-    title = models.CharField(max_length=250, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        db_table = "EpisodeVersions"
+        db_table = "EpisodeSubtitles"
 
     def __str__(self):
-        return str(self.episode_id) + " , Language: " + str(self.language_id)
+        return "Subtitle for episode: " + str(self.episode_id) + " , Language: " + str(self.language_id)

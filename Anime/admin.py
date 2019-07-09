@@ -8,7 +8,7 @@ from .models import Season
 from .models import SeasonAlternativeTitle
 from .models import Language
 from .models import Episode
-from .models import EpisodeVersion
+from .models import EpisodeSubtitle
 
 # Register your models here.
 admin.site.register(Language)
@@ -19,7 +19,7 @@ admin.site.register(SeasonDescription)
 # admin.site.register(Season)
 admin.site.register(SeasonAlternativeTitle)
 # admin.site.register(Episode)
-admin.site.register(EpisodeVersion)
+admin.site.register(EpisodeSubtitle)
 
 
 class RequiredInlineFormSet(BaseInlineFormSet):
@@ -111,8 +111,8 @@ class SeasonAdmin(admin.ModelAdmin):
 """
 
 
-class EpisodeVersionInline(admin.StackedInline):
-    model = EpisodeVersion
+class EpisodeSubtitleInline(admin.StackedInline):
+    model = EpisodeSubtitle
     extra = 0
     max_num = 3
     # Episodes should have at least 1 version available
@@ -121,4 +121,4 @@ class EpisodeVersionInline(admin.StackedInline):
 
 @admin.register(Episode)
 class EpisodeAdmin(admin.ModelAdmin):
-    inlines = [EpisodeVersionInline]
+    inlines = [EpisodeSubtitleInline]
