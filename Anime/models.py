@@ -86,6 +86,25 @@ class Movie(models.Model):
         return str(self.anime_id) + ", Movie: " + str(self.releaseOrder)
 
 
+class MovieGenre(models.Model):
+    """
+    This is how Movies and Genres are related ...
+    """
+
+    movie_id = models.ForeignKey(
+        Movie, on_delete=models.CASCADE, db_column="movie_id"
+    )
+    genre_id = models.ForeignKey(Genre, on_delete=models.CASCADE, db_column="genre_id")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "MovieGenres"
+
+    def __str__(self):
+        return " movie_id: " + str(self.movie_id) + " ,genre_id: " + str(self.genre_id)
+
+
 class MovieSubtitle(models.Model):
     """
      Movies are available in multiple languages.
@@ -127,8 +146,28 @@ class MovieDescription(models.Model):
 
     def __str__(self):
         return (
-            "Movie id: " + str(self.season_id) + " ,Language: " + str(self.language_id)
+            "Movie id: " + str(self.movie_id) + " ,Language: " + str(self.language_id)
         )
+
+
+class MovieAlternativeTitle(models.Model):
+    """
+    Movies usually have more than one title
+    """
+
+    movie_id = models.ForeignKey(
+        Movie, on_delete=models.CASCADE, db_column="movie_id"
+    )
+    title = models.CharField(max_length=250)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "MovieAlternativeTitles"
+
+    def __str__(self):
+        return str(self.movie_id) + ", Alternative title: " + str(self.title)
+
 
 class Season(models.Model):
     """
@@ -154,7 +193,7 @@ class Season(models.Model):
 
 class SeasonGenre(models.Model):
     """
-    This is how Anime and Genres are related ...
+    This is how Seasons and Genres are related ...
     """
 
     season_id = models.ForeignKey(

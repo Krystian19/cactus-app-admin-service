@@ -2,10 +2,15 @@ from django.forms.models import BaseInlineFormSet
 from django.contrib import admin
 from .models import Anime
 from .models import Genre
+from .models import SeasonAlternativeTitle
+from .models import MovieSubtitle
+from .models import MovieGenre
+from .models import MovieDescription
+from .models import Movie
+from .models import SeasonAlternativeTitle
 from .models import SeasonGenre
 from .models import SeasonDescription
 from .models import Season
-from .models import SeasonAlternativeTitle
 from .models import Language
 from .models import Episode
 from .models import EpisodeSubtitle
@@ -114,12 +119,51 @@ class SeasonAdmin(admin.ModelAdmin):
 class EpisodeSubtitleInline(admin.StackedInline):
     model = EpisodeSubtitle
     extra = 0
-    max_num = 3
+    # max_num = 3
     # Episodes should have at least 1 version available
-    formset = RequiredInlineFormSet
+    # formset = RequiredInlineFormSet
 
 
 @admin.register(Episode)
 class EpisodeAdmin(admin.ModelAdmin):
     readonly_fields=('episode_code',)
     inlines = [EpisodeSubtitleInline]
+
+
+"""
+#
+# Season creation admin related view
+#
+"""
+
+# class SeasonGenreInline(admin.StackedInline):
+#     model = SeasonGenre
+#     extra = 0
+#     max_num = 5
+#     # Animes should have at least 1 Genre avaiable
+#     formset = RequiredInlineFormSet
+
+# class AnimeDescriptionInline(admin.StackedInline):
+#     model = SeasonDescription
+#     extra = 0
+#     max_num = 2
+#     # Animes should have at least 1 description avaiable, regardless of the language
+#     formset = RequiredInlineFormSet
+
+
+# class SeasonAlternativeTitleInline(admin.StackedInline):
+#     model = SeasonAlternativeTitle
+#     extra = 0
+#     max_num = 4
+#     # Seasons may not have alternative titles (not required)
+#     # formset = RequiredInlineFormSet
+
+
+# @admin.register(Season)
+# class SeasonAdmin(admin.ModelAdmin):
+#     inlines = [
+#         SeasonAlternativeTitleInline,
+#         AnimeDescriptionInline,
+#         SeasonGenreInline,
+#     ]
+
