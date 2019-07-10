@@ -121,4 +121,5 @@ class EpisodeSubtitleInline(admin.StackedInline):
 
 @admin.register(Episode)
 class EpisodeAdmin(admin.ModelAdmin):
+    readonly_fields=('episode_code',)
     inlines = [EpisodeSubtitleInline]
