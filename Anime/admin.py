@@ -2,7 +2,7 @@ from django.forms.models import BaseInlineFormSet
 from django.contrib import admin
 from .models import Anime
 from .models import Genre
-from .models import SeasonAlternativeTitle
+from .models import MovieAlternativeTitle
 from .models import MovieSubtitle
 from .models import MovieGenre
 from .models import MovieDescription
@@ -71,9 +71,9 @@ class AnimeAdmin(admin.ModelAdmin):
 class EpisodeInline(admin.StackedInline):
     model = Episode
     extra = 0
-    max_num = 5
-    # Seasons should have at least 1 Episode available
-    formset = RequiredInlineFormSet
+    # max_num = 5
+    # # Seasons should have at least 1 Episode available
+    # formset = RequiredInlineFormSet
 
 
 class SeasonGenreInline(admin.StackedInline):
@@ -83,7 +83,7 @@ class SeasonGenreInline(admin.StackedInline):
     # Animes should have at least 1 Genre avaiable
     formset = RequiredInlineFormSet
 
-class AnimeDescriptionInline(admin.StackedInline):
+class SeasonDescriptionInline(admin.StackedInline):
     model = SeasonDescription
     extra = 0
     max_num = 2
@@ -102,10 +102,10 @@ class SeasonAlternativeTitleInline(admin.StackedInline):
 @admin.register(Season)
 class SeasonAdmin(admin.ModelAdmin):
     inlines = [
-        SeasonAlternativeTitleInline,
-        AnimeDescriptionInline,
+        SeasonDescriptionInline,
         SeasonGenreInline,
         EpisodeInline,
+        SeasonAlternativeTitleInline,
     ]
 
 
@@ -132,38 +132,47 @@ class EpisodeAdmin(admin.ModelAdmin):
 
 """
 #
-# Season creation admin related view
+# Movie creation admin related view
 #
 """
 
-# class SeasonGenreInline(admin.StackedInline):
-#     model = SeasonGenre
-#     extra = 0
-#     max_num = 5
-#     # Animes should have at least 1 Genre avaiable
-#     formset = RequiredInlineFormSet
+class MovieSubtitleInline(admin.StackedInline):
+    model = MovieSubtitle
+    extra = 0
+    # max_num = 3
+    # Episodes should have at least 1 version available
+    # formset = RequiredInlineFormSet
 
-# class AnimeDescriptionInline(admin.StackedInline):
-#     model = SeasonDescription
-#     extra = 0
-#     max_num = 2
-#     # Animes should have at least 1 description avaiable, regardless of the language
-#     formset = RequiredInlineFormSet
+class MovieGenreInline(admin.StackedInline):
+    model = MovieGenre
+    extra = 0
+    max_num = 5
+    # Animes should have at least 1 Genre avaiable
+    formset = RequiredInlineFormSet
+
+class MovieDescriptionInline(admin.StackedInline):
+    model = MovieDescription
+    extra = 0
+    max_num = 2
+    # Animes should have at least 1 description avaiable, regardless of the language
+    formset = RequiredInlineFormSet
 
 
-# class SeasonAlternativeTitleInline(admin.StackedInline):
-#     model = SeasonAlternativeTitle
-#     extra = 0
-#     max_num = 4
-#     # Seasons may not have alternative titles (not required)
-#     # formset = RequiredInlineFormSet
+class MovieAlternativeTitleInline(admin.StackedInline):
+    model = MovieAlternativeTitle
+    extra = 0
+    max_num = 4
+    # Movies may not have alternative titles (not required)
+    # formset = RequiredInlineFormSet
 
 
-# @admin.register(Season)
-# class SeasonAdmin(admin.ModelAdmin):
-#     inlines = [
-#         SeasonAlternativeTitleInline,
-#         AnimeDescriptionInline,
-#         SeasonGenreInline,
-#     ]
+@admin.register(Movie)
+class MovieAdmin(admin.ModelAdmin):
+    readonly_fields=('movie_code',)
+    inlines = [
+        MovieDescriptionInline,
+        MovieGenreInline,
+        MovieSubtitleInline,
+        MovieAlternativeTitleInline,
+    ]
 
