@@ -40,7 +40,7 @@ class Genre(models.Model):
     def __str__(self):
         return self.title
 
-class GenreLanguageVersion(models.Model):
+class GenreTitleVersion(models.Model):
     """
     Genres can have different titles throughout different languages
     """
@@ -56,13 +56,79 @@ class GenreLanguageVersion(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        db_table = "GenreLanguageVersion"
+        db_table = "GenreTitleVersion"
 
     def __str__(self):
-        return "GenreLanguageVersion Episode " + self.genre_id + ", Language: " + self.language_id
+        return "GenreTitleVersion Episode " + self.genre_id + ", Language: " + self.language_id
 
 
 # TODO Work in the Movie model, and Movie Subtitle.
+
+class Movie(models.Model):
+    """
+    Anime series tend to have multiple Movies
+    """
+
+    anime_id = models.ForeignKey(Anime, on_delete=models.CASCADE, db_column="anime_id")
+    releaseOrder = models.IntegerField()
+    title = models.CharField(max_length=250)
+    movie_code = models.UUIDField(default=uuid.uuid4, editable=False)
+    releaseDate = models.DateTimeField()
+    poster = models.CharField(max_length=250, blank=True, null=True)
+    background = models.CharField(max_length=250, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "Movies"
+
+    def __str__(self):
+        return str(self.anime_id) + ", Movie: " + str(self.releaseOrder)
+
+
+class MovieSubtitle(models.Model):
+    """
+     Movies are available in multiple languages.
+    """
+
+    subtitle_code = models.UUIDField(default=uuid.uuid4, editable=False)
+    movie_id = models.ForeignKey(
+        Movie, on_delete=models.CASCADE, db_column="movie_id"
+    )
+    language_id = models.ForeignKey(
+        Language, on_delete=models.CASCADE, db_column="language_id"
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "MovieSubtitles"
+
+    def __str__(self):
+        return "Subtitle for Movie: " + str(self.movie_id) + " , Language: " + str(self.language_id)
+
+class MovieDescription(models.Model):
+    """
+    Movies have multiple descriptions based off the language they are in.
+    """
+
+    movie_id = models.ForeignKey(
+        Movie, on_delete=models.CASCADE, db_column="movie_id"
+    )
+    language_id = models.ForeignKey(
+        Language, on_delete=models.CASCADE, db_column="language_id"
+    )
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "MovieDescriptions"
+
+    def __str__(self):
+        return (
+            "Movie id: " + str(self.season_id) + " ,Language: " + str(self.language_id)
+        )
 
 class Season(models.Model):
     """
@@ -70,7 +136,7 @@ class Season(models.Model):
     """
 
     anime_id = models.ForeignKey(Anime, on_delete=models.CASCADE, db_column="anime_id")
-    seasonOrder = models.IntegerField()
+    releaseOrder = models.IntegerField()
     title = models.CharField(max_length=250)
     startedAiring = models.DateTimeField()
     stoppedAiring = models.DateTimeField(blank=True, null=True)
@@ -83,7 +149,7 @@ class Season(models.Model):
         db_table = "Seasons"
 
     def __str__(self):
-        return str(self.anime_id) + " ,Season: " + str(self.seasonOrder)
+        return str(self.anime_id) + " ,Season: " + str(self.releaseOrder)
 
 
 class SeasonGenre(models.Model):
