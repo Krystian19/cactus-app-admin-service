@@ -1,6 +1,7 @@
 from django.forms.models import BaseInlineFormSet
 from django.contrib import admin
 from .models import Anime
+from .models import GenreTitleVersion
 from .models import Genre
 from .models import MovieAlternativeTitle
 from .models import MovieSubtitle
@@ -18,7 +19,8 @@ from .models import EpisodeSubtitle
 # Register your models here.
 admin.site.register(Language)
 # admin.site.register(Anime)
-admin.site.register(Genre)
+admin.site.register(GenreTitleVersion)
+# admin.site.register(Genre)
 admin.site.register(SeasonGenre)
 admin.site.register(SeasonDescription)
 # admin.site.register(Season)
@@ -29,17 +31,31 @@ admin.site.register(EpisodeSubtitle)
 
 class RequiredInlineFormSet(BaseInlineFormSet):
     """
-  Generates an inline formset that is required
-  """
+    Generates an inline formset that is required
+    """
 
     def _construct_form(self, i, **kwargs):
         """
-      Override the method to change the form attribute empty_permitted
-      """
+        Override the method to change the form attribute empty_permitted
+        """
         form = super(RequiredInlineFormSet, self)._construct_form(i, **kwargs)
         form.empty_permitted = False
         return form
 
+"""
+#
+# Genre creation admin related view
+#
+"""
+
+class GenreTitleVersionInline(admin.StackedInline):
+    model = GenreTitleVersion
+    extra = 0
+
+
+@admin.register(Genre)
+class GenreAdmin(admin.ModelAdmin):
+    inlines = [GenreTitleVersionInline]
 
 """
 #
