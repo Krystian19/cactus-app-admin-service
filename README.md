@@ -9,7 +9,7 @@ docker -v
 Docker version 18.03.0-ce # or later
 ```
 
-# Setup
+## Setup
 docker-compose file example:
 ```yaml
 version: '2.3'
