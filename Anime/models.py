@@ -72,7 +72,7 @@ class Movie(models.Model):
     anime_id = models.ForeignKey(Anime, on_delete=models.CASCADE, db_column="anime_id")
     releaseOrder = models.IntegerField()
     title = models.CharField(max_length=250)
-    movie_code = models.UUIDField(default=uuid.uuid4, editable=False)
+    movie_code = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     releaseDate = models.DateTimeField()
     poster = models.CharField(max_length=250, blank=True, null=True)
     background = models.CharField(max_length=250, blank=True, null=True)
@@ -110,7 +110,7 @@ class MovieSubtitle(models.Model):
      Movies are available in multiple languages.
     """
 
-    subtitle_code = models.UUIDField(default=uuid.uuid4, editable=False)
+    subtitle_code = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     movie_id = models.ForeignKey(
         Movie, on_delete=models.CASCADE, db_column="movie_id"
     )
@@ -259,7 +259,7 @@ class Episode(models.Model):
     season_id = models.ForeignKey(
         Season, on_delete=models.CASCADE, db_column="season_id"
     )
-    episode_code = models.UUIDField(default=uuid.uuid4, editable=False)
+    episode_code = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -275,7 +275,7 @@ class EpisodeSubtitle(models.Model):
      Episodes are available in multiple languages.
     """
 
-    subtitle_code = models.UUIDField(default=uuid.uuid4, editable=False)
+    subtitle_code = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     episode_id = models.ForeignKey(
         Episode, on_delete=models.CASCADE, db_column="episode_id"
     )
