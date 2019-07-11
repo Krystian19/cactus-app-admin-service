@@ -13,7 +13,7 @@ class Language(models.Model):
         db_table = "Languages"
 
     def __str__(self):
-        return self.name + " " + self.iso_code
+        return str(self.name) + " " + str(self.iso_code)
 
 
 class Anime(models.Model):
@@ -59,10 +59,7 @@ class GenreTitleVersion(models.Model):
         db_table = "GenreTitleVersion"
 
     def __str__(self):
-        return "GenreTitleVersion Episode " + self.genre_id + ", Language: " + self.language_id
-
-
-# TODO Work in the Movie model, and Movie Subtitle.
+        return "GenreTitleVersion Genre " + str(self.genre_id) + ", Language: " + str(self.language_id)
 
 class Movie(models.Model):
     """
