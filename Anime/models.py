@@ -72,7 +72,7 @@ class ReleaseType(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        db_table = "ReleaseType"
+        db_table = "ReleaseTypes"
 
     def __str__(self):
         return " Release Type: " + str(self.title)
