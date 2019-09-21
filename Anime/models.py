@@ -166,7 +166,7 @@ class ReleaseAlternativeTitle(models.Model):
 
 
 class Episode(models.Model):
-    episodeOrder = models.IntegerField()
+    episode_order = models.IntegerField()
     thumbnail = models.CharField(max_length=250, blank=True, null=True)
     release_id = models.ForeignKey(
         Release, on_delete=models.CASCADE, db_column="release_id"
@@ -179,7 +179,7 @@ class Episode(models.Model):
         db_table = "Episodes"
 
     def __str__(self):
-        return str(self.release_id) + " , Episode #: " + str(self.episodeOrder)
+        return str(self.release_id) + " , Episode #: " + str(self.episode_order)
 
 
 class EpisodeSubtitle(models.Model):

@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
             name='Episode',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('episodeOrder', models.IntegerField()),
+                ('episode_order', models.IntegerField()),
                 ('thumbnail', models.CharField(blank=True, max_length=250, null=True)),
                 ('episode_code', models.UUIDField(default=uuid.uuid4, editable=False, unique=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
