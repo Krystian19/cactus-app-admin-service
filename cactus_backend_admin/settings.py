@@ -83,7 +83,7 @@ DATABASES = {
         "NAME": "cactus_app",
         "USER": "root",
         "PASSWORD": "secret",
-        "HOST": "cactus.mysql",
+        "HOST": "cactus.mariadb",
         "PORT": "3306",
     }
 }
