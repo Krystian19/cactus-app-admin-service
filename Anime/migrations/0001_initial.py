@@ -95,7 +95,7 @@ class Migration(migrations.Migration):
             name='Release',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('releaseOrder', models.IntegerField()),
+                ('release_order', models.IntegerField()),
                 ('title', models.CharField(max_length=250)),
                 ('startedAiring', models.DateTimeField()),
                 ('stoppedAiring', models.DateTimeField(blank=True, null=True)),

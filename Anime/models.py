@@ -87,7 +87,7 @@ class Release(models.Model):
         ReleaseType, on_delete=models.CASCADE, db_column="release_type_id"
     )
 
-    releaseOrder = models.IntegerField()
+    release_order = models.IntegerField()
     title = models.CharField(max_length=250, blank=True, null=True)
     startedAiring = models.DateTimeField()
     stoppedAiring = models.DateTimeField(blank=True, null=True)
@@ -100,7 +100,7 @@ class Release(models.Model):
         db_table = "Releases"
 
     def __str__(self):
-        return str(self.anime_id) + " ,Release: " + str(self.releaseOrder)
+        return str(self.anime_id) + " ,Release: " + str(self.release_order)
 
 
 class ReleaseGenre(models.Model):
