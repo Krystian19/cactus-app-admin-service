@@ -89,8 +89,8 @@ class Release(models.Model):
 
     release_order = models.IntegerField()
     title = models.CharField(max_length=250, blank=True, null=True)
-    startedAiring = models.DateTimeField()
-    stoppedAiring = models.DateTimeField(blank=True, null=True)
+    started_airing = models.DateTimeField()
+    stopped_airing = models.DateTimeField(blank=True, null=True)
     poster = models.CharField(max_length=250, blank=True, null=True)
     background = models.CharField(max_length=250, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
