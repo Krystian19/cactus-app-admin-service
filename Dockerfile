@@ -8,7 +8,7 @@ ENV DJANGO_ADMIN_PASSWORD="pass1234"
 RUN apk add --no-cache curl git
 
 # Install required dependencies for the python mysqlclient dependency
-RUN apk add --no-cache mariadb-dev build-base
+RUN apk add --no-cache build-base postgresql-dev gcc python3-dev musl-dev
 
 RUN mkdir /code
 WORKDIR /code

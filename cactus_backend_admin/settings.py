@@ -79,12 +79,12 @@ WSGI_APPLICATION = "cactus_backend_admin.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
+        "ENGINE": "django.db.backends.postgresql",
         "NAME": "cactus_app",
-        "USER": "root",
+        "USER": "postgres",
         "PASSWORD": "secret",
-        "HOST": "cactus.mariadb",
-        "PORT": "3306",
+        "HOST": "cactus.postgres",
+        "PORT": "5432",
     }
 }
 
