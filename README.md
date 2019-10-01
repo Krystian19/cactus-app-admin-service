@@ -62,15 +62,15 @@ services:
 ```
 
 ## Run the tests
-Once the service is up and assuming the service container is called "cactus_app_backend_admin", then run ...
+Once the service is up and assuming the service container is called "cactus_admin", then run ...
 ```sh
-docker exec -ti cactus_app_backend_admin python /code/manage.py test
+docker exec -ti cactus_admin python /code/manage.py test
 ```
 
 ## Update seeder data
 Update the fixtures data file with this command, once you execute it, make the commit:
 ```sh
-docker exec -ti cactus_backend_admin /code/load_data.sh
+docker exec -ti cactus_admin /code/load_data.sh
 ```
 
 ### Translates Japan's Date and time to UTC with moment-timezone.js
