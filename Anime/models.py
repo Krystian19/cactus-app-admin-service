@@ -181,6 +181,18 @@ class Episode(models.Model):
     def __str__(self):
         return str(self.release_id) + " , Episode #: " + str(self.episode_order)
 
+class EpisodesSeen(models.Model):
+    episode_id = models.ForeignKey(
+        Episode, on_delete=models.CASCADE, db_column="episode_id"
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "EpisodesSeen"
+
+    def __str__(self):
+        return "Episode: %s was seen @ %s".format(str(self.episode_id), str(self.created_at))
 
 class EpisodeSubtitle(models.Model):
     """
