@@ -66,7 +66,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='GenreTitleVersion',
+            name='GenreTitle',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=250)),
@@ -75,7 +75,7 @@ class Migration(migrations.Migration):
                 ('genre_id', models.ForeignKey(db_column='genre_id', on_delete=django.db.models.deletion.CASCADE, to='Anime.Genre')),
             ],
             options={
-                'db_table': 'GenreTitleVersion',
+                'db_table': 'GenreTitle',
             },
         ),
         migrations.CreateModel(
@@ -167,7 +167,7 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(db_column='release_type_id', on_delete=django.db.models.deletion.CASCADE, to='Anime.ReleaseType'),
         ),
         migrations.AddField(
-            model_name='genretitleversion',
+            model_name='GenreTitle',
             name='language_id',
             field=models.ForeignKey(db_column='language_id', on_delete=django.db.models.deletion.CASCADE, to='Anime.Language'),
         ),

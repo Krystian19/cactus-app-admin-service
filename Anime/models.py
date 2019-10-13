@@ -40,7 +40,7 @@ class Genre(models.Model):
     def __str__(self):
         return self.title
 
-class GenreTitleVersion(models.Model):
+class GenreTitle(models.Model):
     """
     Genres can have different titles throughout different languages
     """
@@ -56,10 +56,10 @@ class GenreTitleVersion(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        db_table = "GenreTitleVersion"
+        db_table = "GenreTitle"
 
     def __str__(self):
-        return "GenreTitleVersion Genre " + str(self.genre_id) + ", Language: " + str(self.language_id)
+        return "GenreTitle Genre " + str(self.genre_id) + ", Language: " + str(self.language_id)
 
 
 class ReleaseType(models.Model):

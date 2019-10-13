@@ -1,7 +1,7 @@
 from django.forms.models import BaseInlineFormSet
 from django.contrib import admin
 from .models import Anime
-from .models import GenreTitleVersion
+from .models import GenreTitle
 from .models import Genre
 from .models import ReleaseType
 from .models import ReleaseAlternativeTitle
@@ -15,7 +15,7 @@ from .models import EpisodeSubtitle
 # Register your models here.
 admin.site.register(Language)
 # admin.site.register(Anime)
-admin.site.register(GenreTitleVersion)
+admin.site.register(GenreTitle)
 # admin.site.register(Genre)
 admin.site.register(ReleaseType)
 admin.site.register(ReleaseGenre)
@@ -45,14 +45,14 @@ class RequiredInlineFormSet(BaseInlineFormSet):
 #
 """
 
-class GenreTitleVersionInline(admin.StackedInline):
-    model = GenreTitleVersion
+class GenreTitleInline(admin.StackedInline):
+    model = GenreTitle
     extra = 0
 
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
-    inlines = [GenreTitleVersionInline]
+    inlines = [GenreTitleInline]
 
 """
 #
