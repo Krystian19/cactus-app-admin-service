@@ -30,7 +30,7 @@ class Anime(models.Model):
 
 class Genre(models.Model):
     title = models.CharField(max_length=250)
-    thumbnail = models.CharField(max_length=250, blank=True, null=True)
+    thumbnail = models.CharField(default=uuid.uuid4, max_length=250, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -91,8 +91,8 @@ class Release(models.Model):
     title = models.CharField(max_length=250, blank=True, null=True)
     started_airing = models.DateTimeField()
     stopped_airing = models.DateTimeField(blank=True, null=True)
-    poster = models.CharField(max_length=250, blank=True, null=True)
-    background = models.CharField(max_length=250, blank=True, null=True)
+    poster = models.CharField(default=uuid.uuid4, max_length=250, blank=True, null=True)
+    background = models.CharField(default=uuid.uuid4, max_length=250, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -167,7 +167,7 @@ class ReleaseAlternativeTitle(models.Model):
 
 class Episode(models.Model):
     episode_order = models.IntegerField()
-    thumbnail = models.CharField(max_length=250, blank=True, null=True)
+    thumbnail = models.CharField(default=uuid.uuid4, max_length=250, blank=True, null=True)
     release_id = models.ForeignKey(
         Release, on_delete=models.CASCADE, db_column="release_id"
     )
