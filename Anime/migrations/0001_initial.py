@@ -75,7 +75,7 @@ class Migration(migrations.Migration):
                 ('genre_id', models.ForeignKey(db_column='genre_id', on_delete=django.db.models.deletion.CASCADE, to='Anime.Genre')),
             ],
             options={
-                'db_table': 'GenreTitle',
+                'db_table': 'GenreTitles',
             },
         ),
         migrations.CreateModel(

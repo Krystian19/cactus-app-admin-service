@@ -56,7 +56,7 @@ class GenreTitle(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        db_table = "GenreTitle"
+        db_table = "GenreTitles"
 
     def __str__(self):
         return "GenreTitle Genre " + str(self.genre_id) + ", Language: " + str(self.language_id)
