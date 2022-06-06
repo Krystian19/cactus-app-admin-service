@@ -1,5 +1,5 @@
 # Cactus Admin
-[![Build Status](https://travis-ci.org/Krystian19/cactus-app-admin-service.svg?branch=master)](https://travis-ci.org/Krystian19/cactus-app-admin-service)[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5f62f9c87bd7405395824d035a372cbb)](https://www.codacy.com/app/janfrancisco19/cactus-app-backend-admin-service?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Krystian19/cactus-app-backend-admin-service&amp;utm_campaign=Badge_Grade) [![codecov](https://codecov.io/gh/Krystian19/cactus-app-admin-service/branch/master/graph/badge.svg)](https://codecov.io/gh/Krystian19/cactus-app-admin-service)
+[![Build Status](https://travis-ci.org/Krystian19/cactus-app-admin-service.svg?branch=master)](https://travis-ci.org/Krystian19/cactus-app-admin-service) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/16b9691b8c4b45bb82e592b7af6e1d7d)](https://www.codacy.com/gh/Krystian19/cactus-app-admin-service/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Krystian19/cactus-app-admin-service&amp;utm_campaign=Badge_Grade) [![codecov](https://codecov.io/gh/Krystian19/cactus-app-admin-service/branch/master/graph/badge.svg)](https://codecov.io/gh/Krystian19/cactus-app-admin-service)
 
 Content administration service for the Cactus app.
 
