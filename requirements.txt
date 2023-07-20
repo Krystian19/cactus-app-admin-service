@@ -1,4 +1,4 @@
-django==2.0.13
+django==2.2.28
 psycopg2==2.8.3
 envs==1.2.6
 codecov==2.0.15
